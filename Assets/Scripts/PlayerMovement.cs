@@ -3,24 +3,37 @@ using Unity.Netcode;
 public class PlayerMovement : NetworkBehaviour
 {
     public float speed = 5f;
+    public float gravity = -9f;
+
     private CharacterController controller;
+    private float verticalVelocity;
 
     private void Start()
     {
         controller = GetComponent<CharacterController>();
     }
 
-    
+
     private void Update()
     {
-         Debug.Log("Update");
-         if (!IsOwner) return;
+        // Movimiento
+        if (!IsOwner) return;
 
-         float h = Input.GetAxis("Horizontal");
-         float v = Input.GetAxis("Vertical");
-         
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
+
         Vector3 move = new Vector3(h, 0, v);
-        
+
         controller.Move(move * speed * Time.deltaTime);
+
+        // Gravedad
+        if (controller.isGrounded && verticalVelocity <0)
+        {
+            verticalVelocity = -2f;
+        }
+
+        verticalVelocity += gravity * Time.deltaTime;
+
+        controller.Move(Vector3.up * verticalVelocity * Time.deltaTime);
     }
 }
