@@ -16,8 +16,13 @@ public class PlayerMovement : NetworkBehaviour
 
     private void Update()
     {
-        // Movimiento
+        
         if (!IsOwner) return;
+
+        if (GameManager.instance != null && GameManager.instance.gameEnded.Value)
+        {
+            return;
+        }
 
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
@@ -26,7 +31,8 @@ public class PlayerMovement : NetworkBehaviour
 
         controller.Move(move * speed * Time.deltaTime);
 
-        // Gravedad
+        
+
         if (controller.isGrounded && verticalVelocity <0)
         {
             verticalVelocity = -2f;
