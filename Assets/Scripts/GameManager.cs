@@ -5,7 +5,7 @@ public class GameManager : NetworkBehaviour
 {
     public static GameManager instance;
 
-    public NetworkVariable<float> timeRemaining = new NetworkVariable<float>(120f);
+    public NetworkVariable<float> timeRemaining = new NetworkVariable<float>(60f);
 
     public NetworkVariable<bool> gameEnded = new NetworkVariable<bool>(false);
 
