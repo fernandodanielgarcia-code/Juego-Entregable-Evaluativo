@@ -4,6 +4,7 @@ using UnityEngine;
 public class WinnerUI : MonoBehaviour
 {
     public TextMeshProUGUI winnerText;
+    public GameObject returnButton;
 
     private bool alreadyShown = false;
 
@@ -20,6 +21,8 @@ public class WinnerUI : MonoBehaviour
         ulong winner = GameManager.instance.winnerClientId.Value;
 
         winnerText.gameObject.SetActive(true);
+        returnButton.SetActive(true);
+
         winnerText.text = "PARTIDA TERMINADA\n\n" + "Ganador: Jugador " + (winner + 1);
     }
 }
