@@ -1,8 +1,9 @@
 using UnityEngine;
+using Unity.Netcode;
 
-public class PlayerCollector : MonoBehaviour
+public class PlayerCollector : NetworkBehaviour
 {
     public bool isCarrying = false;
-    public int score = 0;
-   
+
+    public NetworkVariable<int> score = new NetworkVariable<int>(0);
 }

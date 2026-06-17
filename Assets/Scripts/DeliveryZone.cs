@@ -13,9 +13,9 @@ public class DeliveryZone : MonoBehaviour
         if (!collector.isCarrying) return;
             
         collector.isCarrying = false;
-        collector.score++;
+        collector.score.Value++;
 
-        Debug.Log("Punto! Score: " + collector.score);
+        Debug.Log("Punto! Score: " + collector.score.Value);
         
     }
 }
